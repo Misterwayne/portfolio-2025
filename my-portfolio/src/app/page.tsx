@@ -207,7 +207,6 @@ FullScreenSection.displayName = "FullScreenSection";
 
 // --- Main Page Component (Usage Example) ---
 export default function Home( ) {
-  const sectionBg = "gray.100"; // Slightly lighter fallback
   const sectionBgDark = "gray.900"; // Slightly darker fallback
   const  { triggerSystemMessage } = useChat();
   const aboutRef = useRef<HTMLDivElement>(null);
