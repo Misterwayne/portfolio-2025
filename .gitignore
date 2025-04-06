@@ -1,0 +1,8 @@
+# Local Netlify folder
+.netlify
+my-portolio/.next
+my-portolio/.netlify
+my-portolio/node_modules
+package
+.next
+node_modules
