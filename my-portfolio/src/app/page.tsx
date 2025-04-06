@@ -61,13 +61,10 @@ const FullScreenSection =  forwardRef<HTMLDivElement, FullScreenSectionProps>(({
   ...props
 }, ref) => {
   let sectionRef = useRef<HTMLDivElement>(null);
-  const sectionRefInternal = useRef<HTMLDivElement>(null); // Keep internal ref if needed for mouse tracking
 
   // Combine refs if necessary, or just use the forwarded one for observer
-  // Simple case: use forwarded ref for observer, internal for mouse tracking
-  const mouseTrackingRef = sectionRefInternal; // Ref used for mouse pos calculation
   const observerRef = ref; // Ref used by Intersection Observer
-  sectionRef = mouseTrackingRef as RefObject<HTMLDivElement>; // Use internal ref for Intersection Observer
+  sectionRef = observerRef as RefObject<HTMLDivElement>; // Use internal ref for Intersection Observer
   // --- Mouse Tracking Effect ---
   useEffect(() => {
     // Determine if any tracking is needed
@@ -157,7 +154,7 @@ const FullScreenSection =  forwardRef<HTMLDivElement, FullScreenSectionProps>(({
       minHeight={`calc(100vh - ${HEADER_HEIGHT})`} h={`100vh`}
       w="100%" scrollSnapAlign="start"
       // Flex Centering
-      display="flex" alignItems="center" justifyContent="center"
+      display="flex" alignItems="center" justifyContent="center" // Apply static background image
       // Positioning & Overflow
       position="relative" overflow="hidden" 
       // Static Background Image (Applied only if highest priority)
@@ -175,7 +172,7 @@ const FullScreenSection =  forwardRef<HTMLDivElement, FullScreenSectionProps>(({
       // Apply fallback bg only if no other bg effect is active
       bg={!showInteractiveBgEffect && !showStaticBgEffect ? props.bg as string : undefined}
       // Pass remaining props, ensuring bg/bgImage/_dark aren't duplicated if handled
-      {...{...props, bgImage: undefined }}
+      {...{...props, bgImage: bgImageUrl as string ?? undefined }}
     >
       {/* --- Overlay Layer --- */}
       {needsOverlay && (
@@ -192,7 +189,7 @@ const FullScreenSection =  forwardRef<HTMLDivElement, FullScreenSectionProps>(({
       <Box
         position="relative" zIndex={2} // Above overlay
         width="100%"
-        ref={sectionRef}
+        bgImage={bgImageUrl as string} // Apply static background image
         // Flex centering for the actual content component
         display="flex" justifyContent="center" alignItems="center"
         // Padding for content area
@@ -342,7 +339,7 @@ export default function Home( ) {
         {/* --- About: Static Image --- */}
         <FullScreenSection
             sectionId="about"
-            seMouseTrackingBg="radial" // <<< ENABLE interactive BACKGROUND
+            useMouseTrackingBg="radial" // <<< ENABLE interactive BACKGROUND
             trackingBgColors={['rgba(255, 100, 150, 0.2)', 'transparent']} // Example pinkish radial
             trackingBgColorsDark={['rgba(255, 100, 150, 0.15)', 'transparent']}
             bg="blue.900" // Darker fallback
@@ -355,10 +352,11 @@ export default function Home( ) {
         {/* --- Experience: Interactive Children Border --- */}
          <FullScreenSection
              sectionId="experience"
+             useMouseTrackingBg="radial" // <<< ENABLE interactive BACKGROUND
              useInteractiveChildrenBorder={true} // <<< ENABLE children border effect
              gradientColor1Hue={120} gradientColor2Hue={270} // Green to Purple sweep
              interactiveColorSaturation={80}
-             bg={sectionBg} _dark={{ bg: sectionBgDark }} // Fallback bg
+             bg={sectionBgDark} _dark={{ bg: sectionBgDark }} // Fallback bg
              ref={experienceRef}
          >
              <ExperienceSection  />
@@ -367,8 +365,8 @@ export default function Home( ) {
         {/* --- Education: Solid Color Only --- */}
         <FullScreenSection
             sectionId="education"
-            bgImageUrl='/public/education/42.png' // Static image
-            bg={sectionBg} _dark={{ bg: sectionBgDark }} // Simple fallback color
+            bgImageUrl='public/education/42.png' // Static image
+            bg={sectionBgDark} _dark={{ bg: sectionBgDark }} // Simple fallback color
             ref={educationRef}
         >
             <EducationSection />
@@ -381,7 +379,7 @@ export default function Home( ) {
             trackingBgColors={['rgba(255, 100, 150, 0.2)', 'transparent']} // Example pinkish radial
             trackingBgColorsDark={['rgba(255, 100, 150, 0.15)', 'transparent']}
             overlayColor="blackAlpha.100" overlayColorDark="blackAlpha.300" // Subtle overlay
-            bg={sectionBg} _dark={{ bg: sectionBgDark }} // Fallback bg
+            bg={sectionBgDark} _dark={{ bg: sectionBgDark }} // Fallback bg
             ref={projectsRef}
         >
             <ProjectsSection />
@@ -393,7 +391,7 @@ export default function Home( ) {
             useInteractiveChildrenBorder={true} // <<< ENABLE children border effect
             gradientColor1Hue={451} gradientColor2Hue={300} // Green to Purple sweep
             interactiveColorSaturation={80}
-            bg={sectionBg} _dark={{ bg: sectionBgDark }}
+            bg={sectionBgDark} _dark={{ bg: sectionBgDark }}
             ref={skillsRef}
         >
             <SkillsSection/>

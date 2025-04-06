@@ -205,7 +205,7 @@ const FixedProfilePic = () => {
   useEffect(() => {
     if (!systemMessageToSend) return;
     handleSendMessage(systemMessageToSend);
-  }, []);
+  }, [systemMessageToSend]);
 
 
   // --- Define styles and sizes (as before) ---
