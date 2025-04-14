@@ -1,14 +1,26 @@
 // src/components/Sections/ProjectsSection.tsx
 'use client';
 
-import { Container, Heading, SimpleGrid, Box } from '@chakra-ui/react';
+import { Container, Heading, SimpleGrid, Box, useDisclosure } from '@chakra-ui/react';
 import ProjectCard from './ProjectCard';
-import { projects } from '@/data/dummyData';
+import { Project, projects } from '@/data/dummyData';
 import { motion } from 'framer-motion';
+import { useState } from 'react';
+import ProjectModal from './ProjectModal';
 
 const MotionBox = motion(Box);
 
 const ProjectsSection = () => {
+
+  const { isOpen, onOpen, onClose } = useDisclosure(); // Hook for modal open/close state
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null); //
+  
+  const handleProjectSelect = (project: Project) => {
+    console.log("Selected project:", project.title);
+    setSelectedProject(project);
+    onOpen(); // Open the modal
+  };
+  // --
   return (
     <MotionBox
       id="projects"
@@ -31,11 +43,17 @@ const ProjectsSection = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <ProjectCard project={project} />
+              <ProjectCard onOpenModal={handleProjectSelect} project={project} />
             </motion.div>
           ))}
         </SimpleGrid>
       </Container>
+
+      <ProjectModal
+        isOpen={isOpen}
+        onClose={onClose}
+        project={selectedProject}
+      />
     </MotionBox>
   );
 };

@@ -1,10 +1,10 @@
 'use client'
 
 // Import the actual ChakraProvider
-import { ChakraProvider, createSystem, defaultConfig } from "@chakra-ui/react"
+import { ChakraProvider,  extendTheme } from "@chakra-ui/react"
 
 // Your custom system definition
-export const system = createSystem(defaultConfig, {
+export const system = extendTheme({
   theme: {
     tokens: {
       fonts: {
@@ -18,7 +18,7 @@ export const system = createSystem(defaultConfig, {
 // Rename your function!
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
-      <ChakraProvider value={system}> 
+      <ChakraProvider theme={system}> 
         {children}
       </ChakraProvider>
   )

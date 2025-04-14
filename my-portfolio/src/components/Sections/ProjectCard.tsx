@@ -9,9 +9,10 @@ const MotionBox = motion(Box);
 
 interface ProjectCardProps {
   project: Project;
+  onOpenModal: (project: Project) => void; 
 }
 
-const ProjectCard = ({ project }: ProjectCardProps) => {
+const ProjectCard = ({ project, onOpenModal }: ProjectCardProps) => {
   const cardBg = 'gray.700';
   const tagColorScheme = 'cyan';
   const defaultBorderLight = "gray.200"; // Fallback border color if variable not set
@@ -26,6 +27,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
       whileHover={{ y: -5, boxShadow: "xl" }}
       transition={{ duration: 0.3 }}
       display="flex"
+      onClick={() => onOpenModal(project)} // Call onOpenModal when aborting
       borderWidth="2px" // You need a border for the color change to show
       borderStyle="solid" // Set a style
       // --- Use sx prop to apply interactive border color ---

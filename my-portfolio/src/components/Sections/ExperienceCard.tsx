@@ -74,14 +74,14 @@ const ExperienceCard = ({ experience }: ExperienceCardProps) => {
                 <Text color={textColor} _dark={{ color: textColorDark }}>•</Text>
                 <Text color={textColor} _dark={{ color: textColorDark }}>{experience.date}</Text>
             </HStack>
-            <List.Root gap={1} pt={2} pl={1}>
+            <List gap={1} pt={2} pl={1}>
                 {experience.description.map((item, index) => (
                     <ListItem key={index} fontSize="sm" color={textColor} _dark={{ color: textColorDark }}>
                         <Icon as={MdCheckCircle} color={accentColor} _dark={{ color: accentColorDark }} />
                         {item}
                     </ListItem>
                 ))}
-            </List.Root>
+            </List>
         </VStack>
     </Flex>
   );

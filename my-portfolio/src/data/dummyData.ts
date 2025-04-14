@@ -7,6 +7,8 @@ export interface Project {
   description: string;
   imageUrl: string; // Path relative to /public
   tags: string[];
+  screenshots?: string[]; // Array of image URLs for modal gallery
+  longDescription?: string;
   liveUrl?: string;
   repoUrl?: string;
   company?: string; // Optional: associate project with a company/client
@@ -48,6 +50,7 @@ export interface PersonalInfo {
     phone?: string; // Added from CV
     location?: string; // Added from CV
     availability?: string; // Added from CV
+    
     linkedin: string;
     github: string;
     portfolioUrl?: string; // Added from CV
@@ -78,11 +81,22 @@ export const projects: Project[] = [
   {
     id: 1,
     title: "Plateforme QR Codes & Interopérabilité Blockchain",
-    description: "Création d'une plateforme de QR codes dynamiques (Express.js, Next.js) conforme aux normes EU pour passeports produits digitaux. Mise en place de l'interopérabilité entre l'ERP Cegid et l'API Web3 (blockchain Aura) améliorant authentification et traçabilité. Développement d'outils modulaires (Node.js, React, TypeScript).",
+    description: "Création d'une plateforme de QR codes dynamiques (Express.js, Next.js) conforme aux normes EU pour passeports produits digitaux. \
+    Mise en place de l'interopérabilité entre l'ERP Cegid et l'API Web3 (blockchain Aura) améliorant authentification et traçabilité. \
+    Développement d'outils modulaires (Node.js, React, TypeScript).",
     imageUrl: "/logos/lvmh.png", // Replace with actual LVMH logo path
     tags: ["Next.js", "Express.js", "Node.js", "React", "TypeScript", "Web3", "Blockchain", "API", "ERP", "Architecture Modulaire"],
+    longDescription: "Développement complet d'une plateforme de gestion de QR codes dynamiques pour les passeports produits digitaux, respectant les normes européennes.\
+     Intégration avec l'ERP Cegid et l'API Web3 de la blockchain Aura pour améliorer l'authentification et la traçabilité des produits de luxe. \
+     Conception et développement d'outils backend modulaires en Node.js, Express.js, et Nest.js, avec une interface frontend en React et TypeScript, \
+     assurant l'adaptabilité aux besoins spécifiques des différentes Maisons du groupe LVMH.",
     company: "Groupe LVMH",
     date: "Septembre 2024 – Mars 2025",
+    screenshots: [
+      "https://via.placeholder.com/800x600/cccccc/888888?text=Project+Screenshot+1", // Replace
+      "https://via.placeholder.com/800x600/dddddd/777777?text=Project+Screenshot+2", // Replace
+      "https://via.placeholder.com/800x600/eeeeee/666666?text=Project+Screenshot+3", // Replace
+  ],
     // repoUrl: "#", // Private likely
   },
   {
@@ -93,6 +107,10 @@ export const projects: Project[] = [
     tags: ["Node.js", "Vue.js", "Backend", "Frontend", "Gestion de projet"],
     company: "Ingérop",
     date: "Septembre 2023 – Mars 2024 (Stage)",
+    screenshots: [
+      "/projets/About4.png",
+      "/projets/Taskin2.png" // Replace with actual screenshot path
+  ],
   },
     {
     id: 3,
@@ -102,6 +120,9 @@ export const projects: Project[] = [
     tags: ["HTML", "CSS", "JavaScript", "Django", "Frontend", "Infrastructure"],
     company: "Ingérop",
     date: "Septembre 2023 – Mars 2024 (Stage)",
+    screenshots: [
+      "/projets/synthese2.png",
+  ],
   },
   {
     id: 4,
@@ -109,6 +130,9 @@ export const projects: Project[] = [
     description: "Développement complet (frontend et backend en Python) d'une application de scraping automatisant la recherche d'offres publiques de la SNCF.",
     imageUrl: "/logos/ingerop.png", // Replace with actual Ingérop logo path
     tags: ["Python", "Web Scraping", "Frontend", "Backend", "Automatisation"],
+    screenshots: [
+      "/projets/scrapping.png",
+  ],
     company: "Ingérop",
     date: "Septembre 2023 – Mars 2024 (Stage)",
   },
