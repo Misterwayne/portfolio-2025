@@ -3,7 +3,7 @@
 
 import {
   Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton,
-  Image, Text, Badge, HStack, VStack, Link as ChakraLink, Button, Icon, SimpleGrid, Box, AspectRatio,
+  Image, Text, Badge, HStack, VStack, Link as ChakraLink, Button, Icon, SimpleGrid, AspectRatio,
   Tag,
   Heading
 } from '@chakra-ui/react';
@@ -30,8 +30,8 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="3xl" scrollBehavior="inside" isCentered>
       <ModalOverlay bg="blackAlpha.700" backdropFilter="blur(5px)" />
-      <ModalContent bg={modalBg} _dark={{ bg: modalBgDark }} color={textColor} _dark={{ color: textColorDark }} borderRadius="lg">
-        <ModalHeader color={headingColor} _dark={{ color: headingColorDark }} borderBottomWidth="1px" borderColor="gray.200" _dark={{ borderColor: 'gray.600' }}>
+      <ModalContent bg={modalBg} _dark={{ bg: modalBgDark }} color={textColor} borderRadius="lg">
+        <ModalHeader color={headingColor} _dark={{ color: headingColorDark }} borderBottomWidth="1px" borderColor="gray.200">
           {project.title}
           {project.company && <Badge ml={2} colorScheme="teal" variant="subtle">{project.company}</Badge>}
         </ModalHeader>
