@@ -132,7 +132,7 @@ const SkillsSection = () => {
                     return (
                       <Box
                         key={skill}// Make tags slightly larger to accommodate icon
-                        colorScheme={tagColorScheme}
+                        color={tagColorScheme}
                         borderRadius="md"
                         px={3} // Add padding
                         py={1}
