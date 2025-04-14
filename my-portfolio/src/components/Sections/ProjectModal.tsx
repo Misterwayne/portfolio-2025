@@ -23,7 +23,6 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
   const modalBg = 'white';
   const modalBgDark = 'gray.800';
   const textColor = 'gray.700';
-  const textColorDark = 'gray.200';
   const headingColor = 'gray.900';
   const headingColorDark = 'whiteAlpha.900';
 
